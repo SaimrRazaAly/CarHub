@@ -8,13 +8,14 @@ export async function fetchCars() {
 
   try {
     // Set the API URL and parameters
-    const apiUrl = `https://api.api-ninjas.com/v1/cars?limit=2&model=camry`;
+    const apiUrl = `https://api.api-ninjas.com/v1/cars?&model=civic`;
 
     // Make the fetch call with headers
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: headers,
     });
+    console.log(response)
 
     // Handle HTTP response errors
     if (!response.ok) {

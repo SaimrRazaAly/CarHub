@@ -22,8 +22,8 @@ const CarCard = ({ car }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="car-card group">
-    <div className="car-card__content">
+    <div className="car-card group max-w-[400px] p-5 m-2 mx-5">
+    <div className="car-card__content ">
       <h2 className="car-card__content-title">
         {make} {model}
       </h2>
@@ -57,7 +57,7 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
       </div>
 
-      <div className="car-card__btn-container">
+      <div className="car-card__btn-container ">
         <CustomBtn
           title='View More'
           containerStyles='w-full py-[16px] rounded-full bg-primary-blue'

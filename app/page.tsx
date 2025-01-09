@@ -33,7 +33,7 @@ const isDataEmpty  = !Array.isArray(allCars) || allCars.length < 1 || !allCars
   </section>
 ): (
   <div>
-    <h2>Eoor </h2>
+    <h2>Error in page.tsx</h2>
     
   </div>
 )}
