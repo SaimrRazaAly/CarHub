@@ -10,18 +10,17 @@ const Searchbar = () => {
   const [manufacturer, setmanufacturer] = useState("");
   const [model, setModel] = useState("");
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (manufacturer.trim() === "" && model.trim() === "") {
       alert("Please provide input..");
     }
-
     updateSearchParams(model.toLocaleLowerCase(), manufacturer.toLowerCase());
   };
 
-  const updateSearchParams = (model: "string", manufacturer: string) => {
+  const updateSearchParams = (model: string, manufacturer: string) => {
     // Create a new URLSearchParams object using the current URL search parameters
     const searchParams = new URLSearchParams(window.location.search);
 
@@ -42,7 +41,7 @@ const Searchbar = () => {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    router.push(newPathname);
+    // router.push(newPathname);
   };
 
   return (
@@ -59,7 +58,7 @@ const Searchbar = () => {
           src="/model-icon.png"
           width={25}
           height={25}
-          className="absolute w-[20px] h-[20px] ml-4"
+          className="absolute w-[20px] h-[20px] ml-4 left-0"
           alt="car model"
         />
         <input
@@ -68,12 +67,12 @@ const Searchbar = () => {
           value={model}
           onChange={(e) => setModel(e.target.value)}
           placeholder="Search Models"
-          className="searchbar__input"
+          className="searchbar__input p-5 px-10 rounded-full"
         />
-        <SearchButton otherClasses="sm-hidden" />
+        <SearchButton otherClasses="sm:hidden absolute top-[5px] right-[5px]"  />
       </div>
 
-      <SearchButton otherClasses="max-sm:hidden" />
+      <SearchButton otherClasses="sm:hidden" />
     </form>
   );
 };

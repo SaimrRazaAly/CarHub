@@ -26,11 +26,11 @@ const SearchManufacturer = ({
   const handleClear = () => setQuery(""); // Clear the search query when called
 
   return (
-    <div className='search-manufacturer'>
+    <div className='search-manufacturer m-5'>
       <Combobox value={manufacturer} onChange={setmanufacturer}>
         <div className='relative w-full'>
           {/* Button for the combobox. Click on the icon to see the complete dropdown */}
-          <Combobox.Button className='absolute top-[14px]'>
+          <Combobox.Button className='absolute top-[14px] left-0'>
             <Image
               src='/car-logo.svg'
               width={20}
@@ -42,7 +42,7 @@ const SearchManufacturer = ({
 
           {/* Input field for searching */}
           <Combobox.Input
-            className='search-manufacturer__input'
+            className='search-manufacturer__input p-5 px-10 rounded-full'
             displayValue={(item: string) => item}
             onChange={(event) => setQuery(event.target.value)} // Update the search query when the input changes
             placeholder='Volkswagen...'

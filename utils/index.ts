@@ -18,7 +18,7 @@ export async function fetchCars() {
 
     // Handle HTTP response errors
     if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+      console.log(`HTTP Error: ${response.status} ${response.statusText}`);
     }
 
     // Parse the JSON response
@@ -47,10 +47,10 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 // api for calling images of car
-export async function GenerateCarImageUrl(car: CarProps, angle?: string) {
-  const { make, model, year } = car;
-  
+export  function GenerateCarImageUrl(car: CarProps, angle?: string) {
   const url = new URL("https://cdn.imagin.studio/getimage");
+  
+  const { make, model, year } = car;
   
   url.searchParams.append("customer", "hrjavascript-mastery");
   url.searchParams.append("make", make);
@@ -59,5 +59,6 @@ export async function GenerateCarImageUrl(car: CarProps, angle?: string) {
   url.searchParams.append("modelYear", `${year}`);
   url.searchParams.append("angle", `${angle}`);
 
-  return url;
+  return `${url}`;
 }
+
