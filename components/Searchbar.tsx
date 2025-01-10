@@ -4,13 +4,13 @@ import React, { use, useState } from "react";
 import SearchManufacturer from "./SearchManufacturer";
 import Image from "next/image";
 import { SearchButton } from "./Search_Btn";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Searchbar = () => {
   const [manufacturer, setmanufacturer] = useState("");
   const [model, setModel] = useState("");
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const Searchbar = () => {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    // router.push(newPathname);
+   return router.push(newPathname);
   };
 
   return (
@@ -72,7 +72,7 @@ const Searchbar = () => {
         <SearchButton otherClasses="sm:hidden absolute top-[5px] right-[5px]"  />
       </div>
 
-      <SearchButton otherClasses="sm:hidden" />
+      <SearchButton otherClasses="max-sm:hidden absolute top-[25px] right-[5px]" />
     </form>
   );
 };

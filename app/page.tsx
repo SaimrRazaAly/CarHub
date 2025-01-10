@@ -2,10 +2,16 @@ import CarCard from "@/components/CarCard";
 import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import { fetchCars } from "@/utils";
-import Image from "next/image";
+import { FilterProps, HomeProps } from "@/types/types";
 
-export default async function Home() {
-  const allCars = await fetchCars();
+export default async function Home({searchParams} :HomeProps) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || "",
+    year: searchParams.year || 2022,
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || "",
+  });
 console.log(allCars)
 
 const isDataEmpty  = !Array.isArray(allCars) || allCars.length < 1 || !allCars 

@@ -1,35 +1,28 @@
-import { CarProps } from "@/types/types";
+import { CarProps, FilterProps } from "@/types/types";
 
-export async function fetchCars() {
-  const headers = {
-    "X-Api-Key": "emfj0AxC2oUqJ4kvdW4I9Q==lyeaJRsB4gJva7HV",
-    "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
-  };
+export async function fetchCars(filters: FilterProps) {
+  const { manufacturer, year, model, limit, fuel } = filters;
 
-  try {
-    // Set the API URL and parameters
-    const apiUrl = `https://api.api-ninjas.com/v1/cars?&model=civic`;
+  // const url =  `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}`;
+  const url =  `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}`;
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '2499b6d8f6mshf74e4bedc1c36b6p128a94jsn84dad61ef311',
+		'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+	}
+};
+let result;
+try {
+	const response = await fetch(url, options);
+ result = await response.json();
+	// console.log(result);
+} catch (error) {
+	console.error(error);
+}
 
-    // Make the fetch call with headers
-    const response = await fetch(apiUrl, {
-      method: "GET",
-      headers: headers,
-    });
-    console.log(response)
+return result
 
-    // Handle HTTP response errors
-    if (!response.ok) {
-      console.log(`HTTP Error: ${response.status} ${response.statusText}`);
-    }
-
-    // Parse the JSON response
-    const result = await response.json();
-    console.log(result); // Optional: Log the result for debugging
-    return result;
-  } catch (error) {
-    console.log("Error fetching car data:");
-    throw error; // Rethrow error for caller to handle if necessary
-  }
 }
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
@@ -48,18 +41,17 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 // api for calling images of car
-export  function GenerateCarImageUrl(car: CarProps, angle?: string) {
-  const url = new URL("https://cdn.imagin.studio/getimage");
-  
-  const { make, model, year } = car;
-  
-  url.searchParams.append("customer", "hrjavascript-mastery");
-  url.searchParams.append("make", make);
-  url.searchParams.append("modelFamily", model.split(" ")[0]);
-  url.searchParams.append("zoomType", "fullscreen");
-  url.searchParams.append("modelYear", `${year}`);
-  url.searchParams.append("angle", `${angle}`);
+// export  function GenerateCarImageUrl(car: CarProps, angle?: string) {
+//   const url = new URL("https://cdn.imagin.studio/getimage");
 
-  return `${url}`;
-}
+//   const { make, model, year } = car;
 
+//   url.searchParams.append("customer", "hrjavascript-mastery");
+//   url.searchParams.append("make", make);
+//   url.searchParams.append("modelFamily", model.split(" ")[0]);
+//   url.searchParams.append("zoomType", "fullscreen");
+//   url.searchParams.append("modelYear", `${year}`);
+//   url.searchParams.append("angle", `${angle}`);
+
+//   return `${url}`;
+// }
